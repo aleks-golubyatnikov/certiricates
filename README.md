@@ -4,6 +4,11 @@
 sudo apt install gnutls-bin
 ```
 
+## Verify openssl version:
+```
+openssl version –a
+```
+
 ## Generate certificate:
 ```
 #openssl
