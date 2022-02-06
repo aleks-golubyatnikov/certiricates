@@ -24,6 +24,7 @@ certtool -i --infile gitlab.internal.com.pem
 ```
 ## Copy certificate:
 ```
-cp gitlab.internal.com.crt /etc/gitlab/trusted-certs
+cp gitlab.internal.com.pem /etc/gitlab/trusted-certs
+
 gitlab-ctl reconfigure
 ```
