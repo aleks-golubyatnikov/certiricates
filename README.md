@@ -20,6 +20,7 @@ certtool --generate-request --load-privkey gitlab.internal.com-key.pem --outfile
 certtool --generate-certificate --load-request request.pem --outfile gitlab.internal.com.pem --load-ca-certificate ca.pem --load-ca-privkey ca-key.pem
 
 certtool -i --infile gitlab.internal.com.pem
+openssl x509 -outform der -in gitlab.internal.com.pem -out gitlab.internal.com.crt
 
 ```
 ## Copy certificate:
