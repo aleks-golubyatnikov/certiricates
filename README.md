@@ -1,3 +1,9 @@
+## Install utils:
+```
+# certtool
+sudo apt install gnutls-bin
+```
+
 ## Generate certificate:
 ```
 # openssl
