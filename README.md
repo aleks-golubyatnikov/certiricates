@@ -12,9 +12,9 @@ openssl version –a
 ## Generate certificate:
 ```
 #openssl
-openssl genrsa -out private.key 2048
-openssl req -new -sha256 -days 365 -key private.key -out request.csr
-openssl x509 -in request.csr -out gitlab.internal.com.crt -req -signkey private.key -days 365
+openssl genrsa -out gitlab.internal.com.key 2048
+openssl req -new -sha256 -days 365 -key gitlab.internal.com.key -out gitlab.internal.com.csr
+openssl x509 -in request.csr -out gitlab.internal.com.crt -req -signkey gitlab.internal.com.key -days 365
 
 #certtool
 certtool --generate-privkey --outfile ca-key.pem
