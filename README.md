@@ -1,8 +1,3 @@
-## Utils:
-```
-sudo apt install gnutls-bin
-openssl version –a
-```
 ## Generate certificate:
 ```
 #openssl
