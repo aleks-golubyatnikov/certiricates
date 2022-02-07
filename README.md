@@ -1,10 +1,6 @@
-## Install utils:
+## Utils:
 ```
-# certtool
 sudo apt install gnutls-bin
-```
-## Verify openssl version:
-```
 openssl version –a
 ```
 ## Generate certificate:
@@ -35,6 +31,5 @@ openssl x509 -in gitlab.internal.com.pem -inform PEM -out gitlab.internal.com.cr
 ## Copy certificate:
 ```
 cp gitlab.internal.com.crt /etc/gitlab/trusted-certs
-
 gitlab-ctl reconfigure
 ```
