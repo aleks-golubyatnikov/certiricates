@@ -16,20 +16,16 @@ openssl genrsa -out gitlab.internal.com.key 2048
 openssl req -new -key gitlab.internal.com.key -subj "/CN=gitlab.internal.com" -config server.cnf -out gitlab.internal.com.csr
 openssl x509 -req -days 365 -in gitlab.internal.com.csr -CA ca.crt -CAkey ca.key -CAcreateserial -extensions req_ext -extfile server.cnf -out gitlab.internal.com.crt
 
-#certtool
-certtool --generate-privkey --outfile ca-key.pem
-certtool --generate-self-signed --load-privkey ca-key.pem --outfile ca.pem
+openssl x509 -text -noout -in gitlab.internal.com.crt | grep -A 1 "Subject Alternative Name"  
+openssl x509 -text -noout -in gitlab.internal.com.crt | grep -A 1 "Subject Alternative Name"  
 
-certtool --generate-privkey --outfile gitlab.internal.com-key.pem --bits 2048
-certtool --generate-request --load-privkey gitlab.internal.com-key.pem --outfile request.pem
-certtool --generate-certificate --load-request request.pem --outfile gitlab.internal.com.pem --load-ca-certificate ca.pem --load-ca-privkey ca-key.pem
-certtool -i --infile gitlab.internal.com.pem
+#remove password
+openssl rsa -in gitlab.internal.com.key -out gitlab.internal.com.key
 
-openssl x509 -in gitlab.internal.com.pem -inform PEM -out gitlab.internal.com.crt
+#copy cert files
+cp gitlab.internal.com.crt gitlab.internal.com.key /etc/gitlab/ssl
 
-```
-## Copy certificate:
-```
-cp gitlab.internal.com.crt /etc/gitlab/trusted-certs
-gitlab-ctl reconfigure
+#docker trust
+mkdir /etc/docker/certs.d/gitlab.internal.com:5050/
+cp gitlab.internal.com.crt /etc/docker/certs.d/gitlab.internal.com:5050/ca.crt
 ```
