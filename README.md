@@ -1,4 +1,4 @@
-## Generate certificate:
+## Generate certificates:
 ```
 #openssl
 #ca
